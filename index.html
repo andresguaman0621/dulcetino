@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5d7ac" />
+  <meta name="description" content="Dulcetino — Galletas y postres artesanales hechos a mano. Galletas de chispas de chocolate en caja de 5 o funda de 3. Pide por WhatsApp." />
+  <meta name="author" content="Dulcetino" />
+  <meta property="og:title" content="Dulcetino — Galletas y Postres Artesanales" />
+  <meta property="og:description" content="Galletas de chispas de chocolate hechas a mano, una a la vez. Pide en WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="dulcetino-logo.png" />
+  <title>Dulcetino — Galletas y Postres Artesanales</title>
+  <link rel="icon" type="image/png" href="dulcetino-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Tokens ---------- */
+    :root {
+      --bg:            #f5d7ac;
+      --bg-soft:       #f9e2bc;
+      --text:          #683823;
+      --text-soft:     #8a5a3e;
+      --accent:        #d9a05b;
+      --accent-deep:   #b97f3a;
+      --complement:    #f0e2cd;
+      --white:         #fffaf3;
+      --shadow-sm:     0 2px 8px rgba(104, 56, 35, 0.08);
+      --shadow-md:     0 8px 28px rgba(104, 56, 35, 0.12);
+      --shadow-lg:     0 18px 50px rgba(104, 56, 35, 0.18);
+      --radius-sm:     10px;
+      --radius-md:     16px;
+      --radius-lg:     24px;
+      --pad:           clamp(1rem, 3vw, 2rem);
+      --max:           1180px;
+      --ease:          cubic-bezier(.2,.7,.2,1);
+      --serif:         'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans:          'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* ---------- Reset ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent-deep); }
+    :focus-visible {
+      outline: 2px solid var(--accent-deep);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 .5rem;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 1rem; }
+
+    /* ---------- Layout ---------- */
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+    }
+    section { padding: clamp(3.5rem, 8vw, 6rem) 0; position: relative; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto clamp(2rem, 5vw, 3.5rem); }
+    .section-head h2 {
+      font-size: clamp(1.9rem, 4.2vw, 2.8rem);
+      margin-bottom: .8rem;
+    }
+    .section-head p {
+      color: var(--text-soft);
+      font-size: clamp(.98rem, 1.4vw, 1.08rem);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: .8rem;
+    }
+    .divider {
+      width: 64px;
+      height: 2px;
+      background: var(--accent);
+      margin: 0 auto 1.4rem;
+      border-radius: 2px;
+      opacity: .85;
+    }
+
+    /* ---------- Navbar ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(245, 215, 172, 0.82);
+      border-bottom: 1px solid rgba(104, 56, 35, .08);
+      transition: box-shadow .25s var(--ease);
+    }
+    .nav.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: .7rem;
+      padding-bottom: .7rem;
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links button {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: .35rem .25rem;
+      position: relative;
+      transition: color .2s var(--ease);
+    }
+    .nav-links button::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width .25s var(--ease), left .25s var(--ease);
+    }
+    .nav-links button:hover { color: var(--accent-deep); }
+    .nav-links button:hover::after { width: 100%; left: 0; }
+    .nav-cta {
+      background: var(--text);
+      color: var(--white) !important;
+      padding: .55rem 1.1rem !important;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: background .2s var(--ease), transform .2s var(--ease);
+    }
+    .nav-cta:hover { background: var(--accent-deep); transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: background .2s var(--ease);
+    }
+    .hamburger:hover { background: rgba(104,56,35,.08); }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      position: relative;
+      transition: transform .25s var(--ease), opacity .25s var(--ease);
+    }
+    .hamburger span::before,
+    .hamburger span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      transition: transform .25s var(--ease);
+    }
+    .hamburger span::before { top: -7px; }
+    .hamburger span::after { top: 7px; }
+    .hamburger.open span { background: transparent; }
+    .hamburger.open span::before { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span::after { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      background: var(--bg-soft);
+      border-bottom: 1px solid rgba(104, 56, 35, .08);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .3s var(--ease);
+    }
+    .mobile-menu.open { max-height: 460px; }
+    .mobile-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: .5rem var(--pad) 1.2rem;
+    }
+    .mobile-menu button {
+      width: 100%;
+      text-align: left;
+      padding: .9rem .25rem;
+      font-size: 1.02rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(104, 56, 35, .08);
+    }
+    .mobile-menu li:last-child button { border-bottom: 0; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: clamp(3rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 5rem);
+      text-align: center;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(217,160,91,.18), transparent 55%),
+        radial-gradient(ellipse at 100% 30%, rgba(240,226,205,.55), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(1px);
+      opacity: .35;
+    }
+    .hero::before {
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      top: -50px; left: -60px;
+    }
+    .hero::after {
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, var(--complement) 0%, transparent 70%);
+      bottom: -100px; right: -80px;
+      opacity: .55;
+    }
+    .hero-logo {
+      max-width: min(420px, 78vw);
+      margin: 0 auto 1.4rem;
+      filter: drop-shadow(0 6px 18px rgba(104,56,35,.12));
+    }
+    .hero h1 {
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 3.2vw, 2rem);
+      max-width: 620px;
+      margin: 0 auto 1rem;
+      color: var(--text-soft);
+      letter-spacing: 0;
+    }
+    .hero h1 strong { font-style: normal; font-weight: 600; color: var(--text); }
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      color: var(--text-soft);
+      font-size: clamp(.98rem, 1.4vw, 1.05rem);
+    }
+    .hero-ctas {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .85rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .98rem;
+      letter-spacing: .01em;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+      white-space: nowrap;
+      min-height: 44px;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover { background: var(--accent-deep); transform: translateY(-2px); box-shadow: var(--shadow-md); color: var(--white); }
+    .btn-accent {
+      background: var(--accent);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-accent:hover { background: var(--accent-deep); color: var(--white); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(104,56,35,.25);
+    }
+    .btn-ghost:hover { border-color: var(--text); background: rgba(255,250,243,.5); }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      box-shadow: 0 6px 22px rgba(37, 211, 102, .35);
+    }
+    .btn-whatsapp:hover { background: #1ebd5b; color: #fff; transform: translateY(-2px); }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ---------- Productos ---------- */
+    #productos { background: var(--bg); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: clamp(1.2rem, 3vw, 2rem);
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3vw, 2.2rem);
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(104,56,35,.06);
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity .3s var(--ease);
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .product-card:hover::before { opacity: 1; }
+    .product-illustration {
+      background: linear-gradient(135deg, var(--complement) 0%, var(--bg-soft) 100%);
+      border-radius: var(--radius-md);
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.4rem;
+      padding: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-illustration svg { width: 78%; height: auto; max-height: 100%; }
+    .product-name {
+      font-size: clamp(1.4rem, 2.6vw, 1.7rem);
+      margin-bottom: .35rem;
+    }
+    .product-presentation {
+      color: var(--text-soft);
+      font-size: .95rem;
+      margin-bottom: .25rem;
+      font-weight: 500;
+    }
+    .product-packaging {
+      color: var(--text-soft);
+      font-size: .88rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.5;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+    .product-price {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.1rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+    .product-price .cents { font-size: .65em; vertical-align: top; margin-left: .1em; color: var(--text-soft); }
+    .product-price .currency { font-size: .55em; vertical-align: top; margin-right: .15em; color: var(--accent-deep); font-weight: 500; }
+
+    /* ---------- Coming soon ---------- */
+    #proximamente { background: var(--complement); }
+    .coming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: clamp(1rem, 2vw, 1.4rem);
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .coming-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.6rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px dashed rgba(104,56,35,.18);
+      transition: transform .3s var(--ease);
+    }
+    .coming-card:hover { transform: translateY(-3px); }
+    .coming-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1rem;
+      opacity: .45;
+      filter: blur(.5px);
+    }
+    .coming-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      letter-spacing: .02em;
+    }
+    .coming-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .25rem .55rem;
+      border-radius: 999px;
+    }
+
+    /* ---------- Historia ---------- */
+    #historia { background: var(--bg); }
+    .story {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .story-text .eyebrow { display: block; }
+    .story-text h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      margin-bottom: 1.2rem;
+    }
+    .story-text p {
+      color: var(--text-soft);
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+    .story-text p:first-letter {
+      font-family: var(--serif);
+      font-size: 2.2em;
+      float: left;
+      line-height: .9;
+      margin: .15em .12em 0 0;
+      color: var(--accent-deep);
+      font-weight: 600;
+    }
+    .story-text p + p:first-letter { font-size: 1em; float: none; margin: 0; color: inherit; }
+    .story-visual {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .story-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--complement);
+      border-radius: 50%;
+      transform: scale(.9);
+      box-shadow: var(--shadow-md);
+    }
+    .story-visual svg { width: 70%; height: 70%; position: relative; z-index: 1; }
+    .story-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      display: block;
+      margin-bottom: .25rem;
+    }
+    .stat-label {
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    /* ---------- Personaliza ---------- */
+    #personaliza { background: var(--complement); }
+    .custom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: clamp(1rem, 2.5vw, 1.5rem);
+      max-width: 920px;
+      margin: 0 auto 2.5rem;
+    }
+    .custom-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    }
+    .custom-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .custom-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1rem;
+      color: var(--accent-deep);
+    }
+    .custom-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+    }
+    .custom-card p {
+      color: var(--text-soft);
+      font-size: .92rem;
+      margin: 0;
+    }
+    .custom-cta { text-align: center; }
+
+    /* ---------- Testimonios ---------- */
+    #testimonios { background: var(--bg); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: clamp(1.2rem, 2.5vw, 1.8rem);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .testimonial {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.6rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform .3s var(--ease);
+    }
+    .testimonial:hover { transform: translateY(-3px); }
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: -.5rem;
+      left: 1.2rem;
+      font-family: var(--serif);
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: .35;
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin: 0 0 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .testimonial-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-weight: 600; font-size: .95rem; }
+    .testimonial-role { color: var(--text-soft); font-size: .82rem; }
+
+    /* ---------- Contacto ---------- */
+    #contacto {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      text-align: center;
+    }
+    .contact-cards {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: var(--white);
+      padding: 2rem 2.2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      min-width: 230px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .8rem;
+      flex: 1;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+    .contact-icon.whatsapp { background: #25D366; }
+    .contact-icon.instagram { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .contact-icon svg { width: 28px; height: 28px; }
+    .contact-card h3 { font-size: 1.15rem; margin: 0; }
+    .contact-handle { color: var(--text-soft); font-size: .92rem; margin: 0; }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      background: var(--text);
+      color: var(--complement);
+      padding: 3rem 0 1.5rem;
+      text-align: center;
+    }
+    .footer img { height: 56px; margin: 0 auto 1.2rem; filter: brightness(0) invert(1) sepia(.3) saturate(.4); opacity: .92; }
+    .footer-links {
+      display: flex;
+      gap: 1.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.2rem 0 1.5rem;
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links button {
+      font-size: .9rem;
+      color: var(--complement);
+      opacity: .85;
+      transition: opacity .2s var(--ease);
+    }
+    .footer-links button:hover { opacity: 1; color: var(--accent); }
+    .footer-socials {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-socials a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,250,243,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s var(--ease), transform .2s var(--ease), border-color .2s var(--ease);
+    }
+    .footer-socials a:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .footer-socials svg { width: 18px; height: 18px; color: var(--complement); }
+    .footer-copy {
+      font-size: .82rem;
+      opacity: .65;
+      margin: 0;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,250,243,.08);
+    }
+
+    /* ---------- Floating WhatsApp ---------- */
+    .float-wa {
+      position: fixed;
+      bottom: clamp(1rem, 3vw, 1.8rem);
+      right: clamp(1rem, 3vw, 1.8rem);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37, 211, 102, .45);
+      z-index: 40;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+      animation: pulse 2.6s var(--ease) infinite;
+    }
+    .float-wa:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(37, 211, 102, .55); color: #fff; }
+    .float-wa svg { width: 30px; height: 30px; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 8px 28px rgba(37, 211, 102, .45), 0 0 0 0 rgba(37, 211, 102, .35); }
+      50%      { box-shadow: 0 8px 28px rgba(37, 211, 102, .45), 0 0 0 14px rgba(37, 211, 102, 0); }
+    }
+
+    /* ---------- Reveal-on-scroll ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .story { grid-template-columns: 1fr; text-align: left; }
+      .story-visual { aspect-ratio: 16 / 10; max-width: 340px; margin: 0 auto; }
+    }
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 480px) {
+      .product-footer { flex-direction: column; align-items: stretch; gap: .8rem; }
+      .product-footer .btn { width: 100%; }
+      .footer-links { gap: 1rem; }
+      .float-wa { width: 54px; height: 54px; }
+      .float-wa svg { width: 26px; height: 26px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <!-- =================== NAV =================== -->
+    <header class="nav" :class="{ scrolled }">
+      <div class="container nav-inner">
+        <a class="nav-logo" href="#" @click.prevent="scrollTo('top')" aria-label="Dulcetino - inicio">
+          <img src="/assets/images/dulcetino-logo.png" alt="Dulcetino" />
+        </a>
+        <nav>
+          <ul class="nav-links" role="menubar">
+            <li><button @click="scrollTo('productos')">Productos</button></li>
+            <li><button @click="scrollTo('historia')">Historia</button></li>
+            <li><button @click="scrollTo('personaliza')">Personaliza</button></li>
+            <li><button @click="scrollTo('testimonios')">Testimonios</button></li>
+          </ul>
+        </nav>
+        <a class="nav-cta" href="#contacto" @click.prevent="scrollTo('contacto')">Contacto</a>
+        <button
+          class="hamburger"
+          :class="{ open: mobileMenuOpen }"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+          :aria-label="mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
+          :aria-expanded="mobileMenuOpen"
+        ><span></span></button>
+      </div>
+      <div class="mobile-menu" :class="{ open: mobileMenuOpen }">
+        <ul>
+          <li><button @click="scrollTo('productos')">Productos</button></li>
+          <li><button @click="scrollTo('historia')">Historia</button></li>
+          <li><button @click="scrollTo('personaliza')">Personaliza</button></li>
+          <li><button @click="scrollTo('testimonios')">Testimonios</button></li>
+          <li><button @click="scrollTo('contacto')">Contacto</button></li>
+        </ul>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- =================== HERO =================== -->
+      <section class="hero">
+        <div class="container">
+          <img class="hero-logo reveal visible" src="/assets/images/dulcetino-logo.png" alt="Dulcetino — Galletas y Postres Artesanales" />
+          <h1 class="reveal visible">Hechas a mano, <strong>una galleta a la vez.</strong></h1>
+          <p class="hero-sub reveal visible">Galletas de chispas de chocolate horneadas con paciencia, ingredientes seleccionados y el sabor inconfundible de lo hecho en casa.</p>
+          <div class="hero-ctas reveal visible">
+            <button class="btn btn-primary" @click="scrollTo('productos')">
+              Ver productos
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn-ghost" @click="scrollTo('historia')">Conoce la marca</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================== PRODUCTOS =================== -->
+      <section id="productos">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="eyebrow">Nuestro catálogo</span>
+            <div class="divider"></div>
+            <h2>Nuestras Galletas</h2>
+            <p>Galletas de chispas de chocolate en dos presentaciones, listas para regalar o para consentirte.</p>
+          </header>
+
+          <div class="products-grid">
+            <article v-for="(product, i) in products" :key="product.id" class="product-card reveal">
+              <div class="product-illustration">
+                <!-- Caja -->
+                <svg v-if="product.illustration === 'box'" viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg" role="img" :aria-label="product.name">
+                  <defs>
+                    <linearGradient id="boxFace" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#ffffff"/>
+                      <stop offset="100%" stop-color="#f4ece0"/>
+                    </linearGradient>
+                    <linearGradient id="cookieG" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#d9a05b"/>
+                      <stop offset="100%" stop-color="#b97f3a"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Sombra base -->
+                  <ellipse cx="120" cy="178" rx="92" ry="8" fill="#683823" opacity=".12"/>
+                  <!-- Solapa lateral izquierda -->
+                  <path d="M28 60 L42 52 L42 162 L28 170 Z" fill="#f0e2cd" stroke="#d9a05b" stroke-width="1.2" opacity=".95"/>
+                  <!-- Solapa lateral derecha -->
+                  <path d="M212 60 L198 52 L198 162 L212 170 Z" fill="#f0e2cd" stroke="#d9a05b" stroke-width="1.2" opacity=".95"/>
+                  <!-- Cara frontal -->
+                  <rect x="42" y="52" width="156" height="118" rx="6" fill="url(#boxFace)" stroke="#d9a05b" stroke-width="1.5"/>
+                  <!-- Ventana ovalada -->
+                  <rect x="62" y="74" width="116" height="74" rx="38" fill="#f9efdf" stroke="#d9a05b" stroke-width="1.2" opacity=".85"/>
+                  <!-- Papel manteca asomando -->
+                  <path d="M64 138 Q120 132 176 138 L176 146 Q120 142 64 146 Z" fill="#fffaf3" opacity=".85"/>
+                  <!-- Galletas apiladas dentro -->
+                  <g transform="translate(120, 112)">
+                    <ellipse cx="0" cy="14" rx="36" ry="9" fill="url(#cookieG)"/>
+                    <ellipse cx="0" cy="6"  rx="36" ry="9" fill="url(#cookieG)"/>
+                    <ellipse cx="0" cy="-2" rx="36" ry="9" fill="#e0b06a"/>
+                    <!-- Chispas -->
+                    <circle cx="-18" cy="-3" r="2" fill="#4a2517"/>
+                    <circle cx="-4" cy="-5" r="2.2" fill="#4a2517"/>
+                    <circle cx="12" cy="-2" r="1.8" fill="#4a2517"/>
+                    <circle cx="22" cy="-4" r="1.5" fill="#4a2517"/>
+                    <circle cx="-10" cy="4" r="1.8" fill="#4a2517"/>
+                    <circle cx="18" cy="6" r="2" fill="#4a2517"/>
+                  </g>
+                  <!-- Sello redondo dorado -->
+                  <g transform="translate(120, 60)">
+                    <circle r="22" fill="#d9a05b" stroke="#683823" stroke-width="1.5"/>
+                    <circle r="22" fill="none" stroke="#fffaf3" stroke-width=".8" stroke-dasharray="2 2" opacity=".7" transform="scale(.78)"/>
+                    <text y="6" text-anchor="middle" font-family="Playfair Display, serif" font-size="22" font-style="italic" fill="#683823" font-weight="600">D</text>
+                  </g>
+                  <!-- Línea sutil de cierre -->
+                  <line x1="42" y1="64" x2="198" y2="64" stroke="#d9a05b" stroke-width=".8" stroke-dasharray="2 3" opacity=".6"/>
+                </svg>
+
+                <!-- Funda -->
+                <svg v-else-if="product.illustration === 'pouch'" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" role="img" :aria-label="product.name">
+                  <defs>
+                    <linearGradient id="pouchG" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#ffffff" stop-opacity=".6"/>
+                      <stop offset="100%" stop-color="#fffaf3" stop-opacity=".95"/>
+                    </linearGradient>
+                    <linearGradient id="cookieG2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#d9a05b"/>
+                      <stop offset="100%" stop-color="#b97f3a"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Sombra base -->
+                  <ellipse cx="120" cy="200" rx="74" ry="6" fill="#683823" opacity=".12"/>
+                  <!-- Bolsa -->
+                  <path d="M68 50 Q66 200 86 204 L154 204 Q174 200 172 50 Q172 46 168 46 L72 46 Q68 46 68 50 Z"
+                        fill="url(#pouchG)" stroke="#d9a05b" stroke-width="1.4"/>
+                  <!-- Reflejos de polifán -->
+                  <path d="M82 56 L82 196" stroke="#ffffff" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+                  <path d="M156 60 L156 188" stroke="#ffffff" stroke-width="1.4" opacity=".4" stroke-linecap="round"/>
+                  <!-- Galletas apiladas -->
+                  <g transform="translate(120, 150)">
+                    <ellipse cx="0" cy="14" rx="38" ry="10" fill="url(#cookieG2)"/>
+                    <ellipse cx="0" cy="0"  rx="38" ry="10" fill="url(#cookieG2)"/>
+                    <ellipse cx="0" cy="-14" rx="38" ry="10" fill="#e0b06a"/>
+                    <!-- Chispas -->
+                    <circle cx="-20" cy="-16" r="2.2" fill="#4a2517"/>
+                    <circle cx="-4" cy="-18" r="2.2" fill="#4a2517"/>
+                    <circle cx="14" cy="-15" r="1.8" fill="#4a2517"/>
+                    <circle cx="24" cy="-17" r="1.5" fill="#4a2517"/>
+                    <circle cx="-12" cy="-10" r="1.8" fill="#4a2517"/>
+                    <circle cx="20" cy="-8" r="1.8" fill="#4a2517"/>
+                  </g>
+                  <!-- Pliegue superior -->
+                  <path d="M68 50 Q120 38 172 50" stroke="#d9a05b" stroke-width="1.2" fill="none" opacity=".7" stroke-dasharray="2 2"/>
+                  <!-- Lazo -->
+                  <g transform="translate(120, 36)">
+                    <path d="M-2 0 Q-22 -18 -36 -10 Q-28 0 -10 4 Z" fill="#d9a05b" stroke="#683823" stroke-width="1"/>
+                    <path d="M2 0 Q22 -18 36 -10 Q28 0 10 4 Z"   fill="#d9a05b" stroke="#683823" stroke-width="1"/>
+                    <circle r="5" fill="#b97f3a" stroke="#683823" stroke-width="1"/>
+                    <!-- Tiras colgantes -->
+                    <path d="M-4 4 Q-6 22 -2 38" stroke="#d9a05b" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <path d="M4 4 Q2 22 6 38" stroke="#d9a05b" stroke-width="3" fill="none" stroke-linecap="round"/>
+                  </g>
+                  <!-- Sello dorado -->
+                  <g transform="translate(120, 100)">
+                    <circle r="20" fill="#d9a05b" stroke="#683823" stroke-width="1.5"/>
+                    <circle r="20" fill="none" stroke="#fffaf3" stroke-width=".8" stroke-dasharray="2 2" opacity=".7" transform="scale(.78)"/>
+                    <text y="6" text-anchor="middle" font-family="Playfair Display, serif" font-size="20" font-style="italic" fill="#683823" font-weight="600">D</text>
+                  </g>
+                </svg>
+              </div>
+
+              <h3 class="product-name">{{ product.name }}</h3>
+              <p class="product-presentation">{{ product.presentation }}</p>
+              <p class="product-packaging">{{ product.packaging }}</p>
+
+              <div class="product-footer">
+                <div class="product-price">
+                  <span class="currency">$</span>{{ Math.floor(product.price) }}<span class="cents">.{{ (product.price % 1).toFixed(2).slice(2) }}</span>
+                </div>
+                <button class="btn btn-accent" @click="orderProduct(product)" :aria-label="'Pedir ' + product.name + ' por WhatsApp'">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                  Pedir
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================== PRÓXIMAMENTE =================== -->
+      <section id="proximamente">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="eyebrow">Lo que viene</span>
+            <div class="divider"></div>
+            <h2>Próximamente</h2>
+            <p>Nuevas dulzuras horneándose en nuestra cocina. Mantente atento.</p>
+          </header>
+
+          <div class="coming-grid">
+            <article v-for="item in comingSoon" :key="item.name" class="coming-card reveal">
+              <span class="coming-badge">Pronto</span>
+              <svg class="coming-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Cinnabon -->
+                <g v-if="item.icon === 'cinnabon'">
+                  <circle cx="32" cy="32" r="22" fill="#d9a05b"/>
+                  <circle cx="32" cy="32" r="22" fill="none" stroke="#683823" stroke-width="1.5"/>
+                  <circle cx="32" cy="32" r="16" fill="none" stroke="#8a5a3e" stroke-width="1.8"/>
+                  <circle cx="32" cy="32" r="10" fill="none" stroke="#8a5a3e" stroke-width="1.8"/>
+                  <circle cx="32" cy="32" r="4" fill="#8a5a3e"/>
+                  <path d="M16 22 Q22 20 26 22" stroke="#fffaf3" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                  <path d="M38 20 Q44 22 48 26" stroke="#fffaf3" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                  <path d="M16 42 Q24 44 32 44" stroke="#fffaf3" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                  <path d="M38 44 Q44 42 48 38" stroke="#fffaf3" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                </g>
+                <!-- Cupcake -->
+                <g v-else-if="item.icon === 'cupcake'">
+                  <path d="M16 32 L48 32 L44 56 L20 56 Z" fill="#d9a05b"/>
+                  <path d="M16 32 L48 32 L44 56 L20 56 Z" fill="none" stroke="#683823" stroke-width="1.5"/>
+                  <line x1="22" y1="34" x2="20" y2="54" stroke="#683823" stroke-width="1"/>
+                  <line x1="32" y1="34" x2="32" y2="54" stroke="#683823" stroke-width="1"/>
+                  <line x1="42" y1="34" x2="44" y2="54" stroke="#683823" stroke-width="1"/>
+                  <path d="M14 32 Q14 18 24 18 Q28 8 32 18 Q40 12 44 22 Q56 22 50 32 Z" fill="#683823"/>
+                  <circle cx="32" cy="14" r="2.5" fill="#d9a05b"/>
+                </g>
+                <!-- Galleta Red Velvet (sandwich con relleno de crema) -->
+                <g v-else-if="item.icon === 'red-velvet'">
+                  <ellipse cx="32" cy="26" rx="22" ry="8" fill="#a62a2a"/>
+                  <ellipse cx="32" cy="26" rx="22" ry="8" fill="none" stroke="#683823" stroke-width="1.5"/>
+                  <rect x="10" y="28" width="44" height="8" fill="#fffaf3"/>
+                  <rect x="10" y="28" width="44" height="8" fill="none" stroke="#683823" stroke-width="1.5"/>
+                  <ellipse cx="32" cy="38" rx="22" ry="8" fill="#a62a2a"/>
+                  <ellipse cx="32" cy="38" rx="22" ry="8" fill="none" stroke="#683823" stroke-width="1.5"/>
+                  <circle cx="22" cy="24" r="1.2" fill="#7a1f1f"/>
+                  <circle cx="32" cy="22" r="1.2" fill="#7a1f1f"/>
+                  <circle cx="40" cy="25" r="1.2" fill="#7a1f1f"/>
+                  <circle cx="26" cy="40" r="1.2" fill="#7a1f1f"/>
+                  <circle cx="38" cy="38" r="1.2" fill="#7a1f1f"/>
+                </g>
+                <!-- Galleta con Toppings -->
+                <g v-else-if="item.icon === 'toppings'">
+                  <circle cx="32" cy="32" r="22" fill="#d9a05b"/>
+                  <circle cx="32" cy="32" r="22" fill="none" stroke="#683823" stroke-width="1.5"/>
+                  <rect x="20" y="22" width="5" height="2" rx="1" fill="#c2453d" transform="rotate(20 22.5 23)"/>
+                  <rect x="32" y="18" width="5" height="2" rx="1" fill="#3a1d10" transform="rotate(-15 34.5 19)"/>
+                  <rect x="40" y="26" width="5" height="2" rx="1" fill="#fffaf3" stroke="#683823" stroke-width=".3" transform="rotate(45 42.5 27)"/>
+                  <rect x="22" y="36" width="5" height="2" rx="1" fill="#7a1f1f" transform="rotate(-30 24.5 37)"/>
+                  <rect x="36" y="40" width="5" height="2" rx="1" fill="#3a1d10" transform="rotate(15 38.5 41)"/>
+                  <rect x="18" y="32" width="5" height="2" rx="1" fill="#c2453d" transform="rotate(60 20.5 33)"/>
+                  <circle cx="30" cy="30" r="2" fill="#3a1d10"/>
+                  <circle cx="38" cy="34" r="1.8" fill="#3a1d10"/>
+                  <circle cx="28" cy="40" r="2.2" fill="#c2453d" stroke="#683823" stroke-width=".5"/>
+                </g>
+              </svg>
+              <div class="coming-name">{{ item.name }}</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================== HISTORIA =================== -->
+      <section id="historia">
+        <div class="container">
+          <div class="story">
+            <div class="story-text reveal">
+              <span class="eyebrow">Nuestra historia</span>
+              <h2>Pequeños lujos, hechos en casa.</h2>
+              <p>Dulcetino nace en una cocina pequeña, con un horno modesto y una idea grande: que las galletas pueden ser un detalle elegante, sin perder ese sabor inconfundible de lo casero.</p>
+              <p>Cada lote se mezcla a mano, se mide con calma y se hornea en cantidades pequeñas. Sin atajos, sin prisa. Solo mantequilla de verdad, chocolate generoso y el tiempo que toma hacer algo bien.</p>
+              <div class="story-stats">
+                <div class="stat">
+                  <span class="stat-num">100%</span>
+                  <span class="stat-label">Artesanal</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-num">A mano</span>
+                  <span class="stat-label">Cada galleta</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-num">Fresco</span>
+                  <span class="stat-label">Bajo pedido</span>
+                </div>
+              </div>
+            </div>
+            <div class="story-visual reveal">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Rodillo -->
+                <g transform="translate(100 130) rotate(-18)">
+                  <rect x="-60" y="-8" width="120" height="16" rx="8" fill="#fffaf3" stroke="#683823" stroke-width="1.5"/>
+                  <rect x="-70" y="-3" width="12" height="6" rx="2" fill="#d9a05b" stroke="#683823" stroke-width="1.2"/>
+                  <rect x="58" y="-3" width="12" height="6" rx="2" fill="#d9a05b" stroke="#683823" stroke-width="1.2"/>
+                  <line x1="-50" y1="0" x2="50" y2="0" stroke="#f0e2cd" stroke-width="1"/>
+                </g>
+                <!-- Galletas circulares -->
+                <g transform="translate(60 70)">
+                  <circle r="18" fill="#d9a05b" stroke="#683823" stroke-width="1.5"/>
+                  <circle cx="-6" cy="-4" r="1.6" fill="#4a2517"/>
+                  <circle cx="4" cy="-6" r="1.6" fill="#4a2517"/>
+                  <circle cx="6" cy="5" r="1.6" fill="#4a2517"/>
+                  <circle cx="-5" cy="6" r="1.6" fill="#4a2517"/>
+                  <circle cx="0" cy="0" r="1.4" fill="#4a2517"/>
+                </g>
+                <g transform="translate(110 60)">
+                  <circle r="16" fill="#d9a05b" stroke="#683823" stroke-width="1.5"/>
+                  <circle cx="-5" cy="-3" r="1.4" fill="#4a2517"/>
+                  <circle cx="3" cy="-5" r="1.4" fill="#4a2517"/>
+                  <circle cx="5" cy="4" r="1.4" fill="#4a2517"/>
+                  <circle cx="-4" cy="5" r="1.4" fill="#4a2517"/>
+                </g>
+                <g transform="translate(150 80)">
+                  <circle r="14" fill="#d9a05b" stroke="#683823" stroke-width="1.5"/>
+                  <circle cx="-4" cy="-2" r="1.2" fill="#4a2517"/>
+                  <circle cx="3" cy="-4" r="1.2" fill="#4a2517"/>
+                  <circle cx="4" cy="3" r="1.2" fill="#4a2517"/>
+                </g>
+                <!-- Pequeños puntos de harina -->
+                <circle cx="40" cy="160" r="2" fill="#fffaf3" opacity=".9"/>
+                <circle cx="50" cy="170" r="1.4" fill="#fffaf3" opacity=".8"/>
+                <circle cx="160" cy="155" r="1.6" fill="#fffaf3" opacity=".8"/>
+                <circle cx="170" cy="170" r="2" fill="#fffaf3" opacity=".9"/>
+                <circle cx="30" cy="100" r="1.3" fill="#fffaf3" opacity=".7"/>
+                <circle cx="180" cy="110" r="1.5" fill="#fffaf3" opacity=".7"/>
+                <!-- Corazones decorativos -->
+                <path d="M100 35 Q95 28 90 32 Q86 36 100 48 Q114 36 110 32 Q105 28 100 35 Z" fill="#d9a05b" opacity=".6"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================== PERSONALIZA =================== -->
+      <section id="personaliza">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="eyebrow">Pedidos especiales</span>
+            <div class="divider"></div>
+            <h2>¿Tienes un evento especial?</h2>
+            <p>Personalizamos cantidades, empaques y detalles para que tu ocasión sepa exactamente como te imaginas.</p>
+          </header>
+
+          <div class="custom-grid">
+            <article v-for="option in customOptions" :key="option.title" class="custom-card reveal">
+              <svg class="custom-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <g v-if="option.icon === 'event'">
+                  <path d="M6 20h36M10 8v6M38 8v6M8 14h32a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z"/>
+                  <circle cx="24" cy="30" r="2" fill="currentColor"/>
+                </g>
+                <g v-else-if="option.icon === 'corporate'">
+                  <rect x="8" y="14" width="32" height="28" rx="2"/>
+                  <path d="M16 22h6M16 28h6M16 34h6M26 22h6M26 28h6M26 34h6"/>
+                  <path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/>
+                </g>
+                <g v-else-if="option.icon === 'celebration'">
+                  <path d="M8 24c0-8 6-14 14-14M40 24c0-8-6-14-14-14"/>
+                  <ellipse cx="16" cy="24" rx="6" ry="8"/>
+                  <ellipse cx="32" cy="24" rx="6" ry="8"/>
+                  <path d="M16 32v6M32 32v6"/>
+                  <path d="M14 42l4-4M30 42l4-4M22 42l4-4"/>
+                </g>
+              </svg>
+              <h3>{{ option.title }}</h3>
+              <p>{{ option.desc }}</p>
+            </article>
+          </div>
+
+          <div class="custom-cta reveal">
+            <button class="btn btn-primary" @click="orderCustom">
+              Cotiza tu pedido especial
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================== TESTIMONIOS =================== -->
+      <section id="testimonios">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="eyebrow">Lo que nos cuentan</span>
+            <div class="divider"></div>
+            <h2>Probadas y aprobadas</h2>
+            <p>Pequeños comentarios que nos motivan a seguir horneando.</p>
+          </header>
+
+          <div class="testimonials-grid">
+            <article v-for="(t, i) in testimonials" :key="i" class="testimonial reveal">
+              <p class="testimonial-quote">{{ t.quote }}</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar" :aria-hidden="true">{{ t.name.charAt(0) }}</div>
+                <div>
+                  <div class="testimonial-name">{{ t.name }}</div>
+                  <div class="testimonial-role">{{ t.role }}</div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================== CONTACTO =================== -->
+      <section id="contacto">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="eyebrow">Hablemos</span>
+            <div class="divider"></div>
+            <h2>Listo para endulzar tu día</h2>
+            <p>Escríbenos por WhatsApp o búscanos en Instagram. Respondemos lo más pronto posible.</p>
+          </header>
+
+          <div class="contact-cards reveal">
+            <a class="contact-card" :href="whatsappUrl()" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+              <div class="contact-icon whatsapp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              </div>
+              <h3>WhatsApp</h3>
+              <p class="contact-handle">Pide o cotiza directamente</p>
+            </a>
+            <a class="contact-card" :href="instagramUrl()" target="_blank" rel="noopener" aria-label="Abrir Instagram">
+              <div class="contact-icon instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </div>
+              <h3>Instagram</h3>
+              <p class="contact-handle">@{{ contact.instagram }}</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="footer">
+      <div class="container">
+        <img src="dulcetino-logo.png" alt="Dulcetino" />
+        <ul class="footer-links">
+          <li><button @click="scrollTo('productos')">Productos</button></li>
+          <li><button @click="scrollTo('historia')">Historia</button></li>
+          <li><button @click="scrollTo('personaliza')">Personaliza</button></li>
+          <li><button @click="scrollTo('contacto')">Contacto</button></li>
+        </ul>
+        <div class="footer-socials">
+          <a :href="whatsappUrl()" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          </a>
+          <a :href="instagramUrl()" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+        <p class="footer-copy">© {{ year }} Dulcetino · Galletas y Postres Artesanales · Hecho con cariño.</p>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a class="float-wa" :href="whatsappUrl()" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+
+    const CONTACT = {
+      whatsapp:  '593959899355',
+      instagram: 'dulcetino.ec'
+    };
+
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          contact: CONTACT,
+          year: new Date().getFullYear(),
+          scrolled: false,
+          mobileMenuOpen: false,
+          products: [
+            {
+              id: 'caja-5',
+              name: 'Caja Clásica',
+              presentation: 'Caja de 5 galletas',
+              packaging: 'Caja blanca con ventana, papel manteca y sello dorado.',
+              price: 3.95,
+              illustration: 'box'
+            },
+            {
+              id: 'funda-3',
+              name: 'Funda Dulce',
+              presentation: 'Funda de 3 galletas',
+              packaging: 'Polifán transparente con lazo dorado y sello adhesivo.',
+              price: 2.50,
+              illustration: 'pouch'
+            }
+          ],
+          comingSoon: [
+            { name: 'Cinnabons',              icon: 'cinnabon' },
+            { name: 'Cupcakes',               icon: 'cupcake' },
+            { name: 'Galletas Red Velvet',    icon: 'red-velvet' },
+            { name: 'Galletas con Toppings',  icon: 'toppings' }
+          ],
+          customOptions: [
+            { icon: 'event',        title: 'Eventos',              desc: 'Bodas, cumpleaños y reuniones especiales.' },
+            { icon: 'corporate',    title: 'Regalos corporativos', desc: 'Detalles personalizados para tus clientes y equipo.' },
+            { icon: 'celebration',  title: 'Baby showers',         desc: 'Diseños tiernos para celebrar la nueva llegada.' }
+          ],
+          testimonials: [
+            { quote: 'La textura es perfecta: crujiente por fuera, suave por dentro. Saben a galletas de casa, pero presentadas como si fueran un regalo.',  name: 'Andrea',  role: 'Cliente frecuente' },
+            { quote: 'Las pedí como detalle para mi equipo y todos preguntaron de dónde eran. El empaque elegante hizo la diferencia.', name: 'Mateo',  role: 'Regalo corporativo' },
+            { quote: 'Llegaron impecables y se acabaron en minutos. Definitivamente repito para el próximo cumpleaños.',                name: 'Sofía',  role: 'Cumpleaños infantil' }
+          ]
+        };
+      },
+      mounted() {
+        window.addEventListener('scroll', this.onScroll, { passive: true });
+        this.initReveal();
+      },
+      beforeUnmount() {
+        window.removeEventListener('scroll', this.onScroll);
+      },
+      methods: {
+        onScroll() {
+          this.scrolled = window.scrollY > 8;
+        },
+        scrollTo(id) {
+          this.mobileMenuOpen = false;
+          const el = document.getElementById(id);
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 64;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        },
+        formatPrice(price) {
+          return '$' + price.toFixed(2);
+        },
+        orderProduct(product) {
+          const msg = `Hola Dulcetino, me interesa pedir *${product.name}* (${product.presentation}) — ${this.formatPrice(product.price)}.`;
+          window.open(`https://wa.me/${this.contact.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+        },
+        orderCustom() {
+          const msg = `Hola Dulcetino, quisiera cotizar un pedido personalizado para un evento. ¿Me cuentan las opciones?`;
+          window.open(`https://wa.me/${this.contact.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+        },
+        whatsappUrl() {
+          const msg = `Hola Dulcetino, me interesa conocer más sobre sus productos.`;
+          return `https://wa.me/${this.contact.whatsapp}?text=${encodeURIComponent(msg)}`;
+        },
+        instagramUrl() {
+          return `https://instagram.com/${this.contact.instagram}`;
+        },
+        initReveal() {
+          if (!('IntersectionObserver' in window)) {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+            return;
+          }
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+          this.$nextTick(() => {
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+          });
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
